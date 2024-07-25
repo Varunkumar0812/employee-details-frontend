@@ -1,0 +1,76 @@
+{
+  "employees": [
+    {
+      "id": "gf61",
+      "name": "Anita K",
+      "role": "HR Manager",
+      "salary": 55000,
+      "address": "House No: 12, MG Road, Thane West, Mumbai",
+      "pincode": 400601,
+      "mobile": 9876543210
+    },
+    {
+      "id": "hf62",
+      "name": "Kumar R",
+      "role": "Project Manager",
+      "salary": 75000,
+      "address": "Flat No: 5, Shanti Apartments, Begumpet, Hyderabad",
+      "pincode": 500016,
+      "mobile": 9123456789
+    },
+    {
+      "id": "jf63",
+      "name": "Divya P",
+      "role": "Data Scientist",
+      "salary": 65000,
+      "address": "Villa No: 8, Palm Meadows, Whitefield, Bangalore",
+      "pincode": 560066,
+      "mobile": 9234567890
+    },
+    {
+      "id": "kf64",
+      "name": "Vikram S",
+      "role": "QA Lead",
+      "salary": 62000,
+      "address": "Door No: 45, T Nagar, Chennai",
+      "pincode": 600017,
+      "mobile": 9345678901
+    },
+    {
+      "id": "lf65",
+      "name": "Meena L",
+      "role": "Business Analyst",
+      "salary": 58000,
+      "address": "House No: 7, Sector 22, Noida",
+      "pincode": 201301,
+      "mobile": 9456789012
+    },
+    {
+      "id": "mf66",
+      "name": "Arjun M",
+      "role": "DevOps Engineer",
+      "salary": 70000,
+      "address": "Block B, IT Park, Hinjewadi, Pune",
+      "pincode": 411057,
+      "mobile": 9567890123
+    },
+    {
+      "id": "nf67",
+      "name": "Priya T",
+      "role": "UI/UX Designer",
+      "salary": 50000,
+      "address": "House No: 23, Park Street, Kolkata",
+      "pincode": 700016,
+      "mobile": 8939300081
+    },
+    {
+      "id": "f2cc",
+      "name": "Varunkumar R",
+      "role": "DevOps Engineer",
+      "salary": 41000,
+      "address": "Plot No : 27/1, 1st Main Road, Senthil Nagar Annex, Chennai",
+      "pincode": 600116,
+      "mobile": 8939300081
+    }
+  ]
+}
