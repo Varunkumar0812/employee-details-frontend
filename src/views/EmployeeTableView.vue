@@ -11,7 +11,7 @@ employees = res.data;
 
 const deleteMode = ref(false);
 
-const deleteEmployee = async (id) => {
+const deleteEmployee = async (id: number) => {
     const res = await axios.delete(`http://127.0.0.1:5000/employees/${id}`)
 
     window.location.reload();
