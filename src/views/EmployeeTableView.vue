@@ -1,22 +1,26 @@
 <script setup lang="ts">
+import router from "../router";
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import "primeicons/primeicons.css"
+import { useEmployeeStore } from "@/stores/employeeStore";
 
+const store = useEmployeeStore();
 
-let employees = ref([]);
+await store.fetchEmployees();
 
-const res = await axios.get("http://localhost:5000/employees");
-employees = res.data;
+const employees = ref(store.employees);
 
 const deleteMode = ref(false);
 
-const deleteEmployee = async (id: number) => {
-    const res = await axios.delete(`http://127.0.0.1:5000/employees/${id}`)
-
+const handleDelete = async (id: string) => {
+    await store.deleteEmployee(id);
     window.location.reload();
 }
 
+const handleDetails = (id: string) => {
+    router.push(`/employee/${id}`);
+}
 
 </script>
 
@@ -39,12 +43,19 @@ const deleteEmployee = async (id: number) => {
                 <tr className="font-bold text-sm sm:text-lg bg-slate-300">
                     <td v-for="x in Object.keys(employees[0])">{{ x.toUpperCase() }}
                     </td>
+                    <td>MORE DETAILS</td>
                     <td v-show="deleteMode"></td>
                 </tr>
                 <tr v-for="x in employees">
                     <td v-for="y in x">{{ y }}</td>
+                    <td>
+                        <a v-on:click="handleDetails(x.id)"
+                            className="bg-purple-500 p-2 rounded-lg hover:bg-purple-900 hover:text-white hover:cursor-pointer mx-2">
+                            More Details
+                        </a>
+                    </td>
                     <td v-show="deleteMode">
-                        <a v-show="deleteMode" v-on:click="deleteEmployee(x.id)"
+                        <a v-show="deleteMode" v-on:click="handleDelete(x.id)"
                             className="bg-red-500 p-2 rounded-lg hover:bg-red-900 hover:text-white hover:cursor-pointer mx-2">
                             <i class="pi pi-trash"></i>
                         </a>
@@ -60,4 +71,4 @@ td {
     border: solid 1px black;
     padding: 10px;
 }
-</style>
+</style>import type { useEmployeeStore } from "@/stores/employeeStore";
