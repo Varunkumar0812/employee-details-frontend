@@ -45,11 +45,11 @@ const addEmployee = async ({ name, role, salary, address, pincode, mobile, addre
 
 <template>
     <div
-        className="min-h-screen bg-gradient-to-b from-sky-600 to-cyan-400 py-10 flex flex-col justify-center items-center">
+        className="min-h-screen bg-gradient-to-b from-zinc-100 via-cyan-100 to-gray-50 py-10 flex flex-col justify-center items-center">
         <div className="text-center font-bold text-3xl my-10">
             Employee Details
         </div>
-        <table v-show="!editMode" className="auto w-1/2">
+        <table v-show="!editMode" className="auto w-1/2 shadow-xl">
             <tr v-for="[key, value] in Object.entries(employee.data)">
                 <td className="border-2 border-black p-2 capitalize text-lg bg-white font-bold">{{ key }}</td>
                 <td className="border-2 border-black p-2 capitalize text-lg bg-white">{{ value }}
