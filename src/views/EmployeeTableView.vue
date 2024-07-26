@@ -34,8 +34,10 @@ const handleDetails = (id: string) => {
                     New
                     Employee</a>
                 <a v-on:click="deleteMode = !deleteMode"
-                    className="bg-red-500 text-lg p-3 rounded-xl hover:bg-red-800 hover:cursor-pointer hover:text-white shadow-xl">Delete
-                    Employees</a>
+                    className="bg-red-500 text-lg p-3 rounded-xl hover:bg-red-800 hover:cursor-pointer hover:text-white shadow-xl"><span
+                        v-show="!deleteMode">Delete
+                        Employees</span>
+                    <span v-show="deleteMode">Cancel Operation</span></a>
             </div>
         </div>
         <div className="w-full px-4 sm:px-20">

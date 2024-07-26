@@ -7,10 +7,11 @@ import EmployeeView from "../components/EmployeeView.vue";
 
 const routes = [
   { path: "/", component: HomeView },
-  { path : "/employeetable", component : EmployeeTableView},
-  { path: "/addemployee", component : EmployeeCreateView},
+  { path: "/employeetable", component: EmployeeTableView },
+  { path: "/addemployee", component: EmployeeCreateView },
   {
-    path : "/employee/:id", component : EmployeeView}
+    path: "/employee/:id", component: EmployeeView
+  }
 
 ];
 

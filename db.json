@@ -2,12 +2,12 @@
   "employees": [
     {
       "id": "d26b",
-      "name": "Leo Das",
-      "role": "Manager",
-      "salary": 90000,
-      "address": "Door No : 24/1, Arcot Main Road, Beneras, Himachal Pradesh",
-      "pincode": 300122,
-      "mobile": 9444336075
+      "name": "Varunkumar R",
+      "role": "Janitor",
+      "salary": 12000,
+      "address": "Plot No : 27/1, Senthil Nagar Annex, 1st Main Road, Porur, Chennai",
+      "pincode": 600116,
+      "mobile": 8939300081
     },
     {
       "id": "49a8",

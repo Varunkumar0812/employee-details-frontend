@@ -33,5 +33,14 @@ export const useEmployeeStore = defineStore("employee", () => {
         }
     }
 
-    return { employees, fetchEmployees, addEmployee, deleteEmployee };
+    const updateEmployee = async (id: string, data: any) => {
+        try {
+            const res = await axios.patch(`http://127.0.0.1:5000/employees/${id}`, JSON.stringify(data));
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
+    return { employees, fetchEmployees, addEmployee, deleteEmployee, updateEmployee };
 });
