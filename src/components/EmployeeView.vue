@@ -16,7 +16,7 @@ const handleEditMode = () => {
 }
 
 const employeeId = route.currentRoute.value.params.id;
-const employee = await axios.get(`http://127.0.0.1:5000/employees/${employeeId}`);
+const employee = (await axios.get(`http://127.0.0.1:5000/employees/${employeeId}`)).data;
 
 
 const addEmployee = async ({ name, role, salary, address, pincode, mobile, address_line1, address_line2, name_error, pincode_error, mobile_error }) => {
@@ -35,11 +35,9 @@ const addEmployee = async ({ name, role, salary, address, pincode, mobile, addre
         };
 
         await store.updateEmployee(employee.data.id, data);
-
         router.push("/employeetable");
     }
 }
-
 
 </script>
 
@@ -50,13 +48,15 @@ const addEmployee = async ({ name, role, salary, address, pincode, mobile, addre
             Employee Details
         </div>
         <table v-show="!editMode" className="auto w-1/2 shadow-xl">
-            <tr v-for="[key, value] in Object.entries(employee.data)">
+            <tr v-for="[key, value] in Object.entries(employee)">
                 <td className="border-2 border-black p-2 capitalize text-lg bg-white font-bold">{{ key }}</td>
                 <td className="border-2 border-black p-2 capitalize text-lg bg-white">{{ value }}
                 </td>
             </tr>
         </table>
-        <CreationForm v-show="editMode" @send-data="addEmployee" />
+        <CreationForm v-show="editMode" @send-data="addEmployee" :name="employee.name" :role="employee.role"
+            :salary="employee.salary" :pincode="employee.pincode" :mobile="employee.mobile"
+            :address_line1="employee.address.split(',')[0]" :address_line2="employee.address.split(',')[1]" />
         <div>
             <button @click="handleEditMode" v-show="!editMode"
                 className="py-2 px-5 bg-yellow-500 rounded-lg my-10 hover:bg-yellow-800 hover:text-white shadow-xl">

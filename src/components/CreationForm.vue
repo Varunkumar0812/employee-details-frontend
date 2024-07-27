@@ -1,16 +1,28 @@
 <script setup lang="ts">
 import { ref, defineEmits } from "vue";
+import { defineProps } from "vue";
+
+
+const props = defineProps({
+    name: String,
+    role: String,
+    salary: Number,
+    pincode: Number,
+    mobile: Number,
+    address_line1: String,
+    address_line2: String,
+});
 
 const emit = defineEmits(["send-data"]);
 
-let name = ref("");
-let role = ref("");
-let salary = ref(0);
-let pincode = ref(0);
-let mobile = ref(0);
+let name = ref(props.name || "");
+let role = ref(props.role || "");
+let salary = ref(props.salary || 0);
+let pincode = ref(props.pincode || 0);
+let mobile = ref(props.mobile || 0);
 
-let address_line1 = ref("");
-let address_line2 = ref("");
+let address_line1 = ref(props.address_line1 || "");
+let address_line2 = ref(props.address_line2 || "");
 
 let name_error = ref("");
 let pincode_error = ref("");
@@ -28,7 +40,7 @@ const sendData = () => {
         <div className="w-full flex flex-wrap sm:flex-nowrap justify-between my-2">
             <label>Name of employee</label>
             <input type="text" v-model="name" required maxlength="50"
-                className="rounded-sm border border-1 border-black/50 px-2 text-gray-500" />
+                className="rounded-sm border border-1 border-black/50 px-2 text-gray-500" default="James Howlett" />
         </div>
         <div v-show="name_error" className="text-red-500 text-sm">{{ name_error }}</div>
         <div className="w-full flex flex-wrap sm:flex-nowrap justify-between my-2">
