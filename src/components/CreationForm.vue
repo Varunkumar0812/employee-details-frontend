@@ -1,28 +1,19 @@
 <script setup lang="ts">
-import { ref, defineEmits } from "vue";
-import { defineProps } from "vue";
+import { ref, defineEmits, inject } from "vue";
 
-
-const props = defineProps({
-    name: String,
-    role: String,
-    salary: Number,
-    pincode: Number,
-    mobile: Number,
-    address_line1: String,
-    address_line2: String,
-});
+const data: any = inject("sharedData", { name: "", role: "", salary: 0, pincode: 0, mobile: 0, address: "" });
+console.log(data);
 
 const emit = defineEmits(["send-data"]);
 
-let name = ref(props.name || "");
-let role = ref(props.role || "");
-let salary = ref(props.salary || 0);
-let pincode = ref(props.pincode || 0);
-let mobile = ref(props.mobile || 0);
+let name = ref(data.name);
+let role = ref(data.role);
+let salary = ref(data.salary);
+let pincode = ref(data.pincode);
+let mobile = ref(data.mobile);
 
-let address_line1 = ref(props.address_line1 || "");
-let address_line2 = ref(props.address_line2 || "");
+let address_line1 = ref(data.address.split(", ")[0]);
+let address_line2 = ref(data.address.split(", ").slice(1).join(", ").trim());
 
 let name_error = ref("");
 let pincode_error = ref("");

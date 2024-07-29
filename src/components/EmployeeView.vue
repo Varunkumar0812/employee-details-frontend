@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import { provide, ref } from "vue";
 import router from "../router";
 import axios from "axios";
 import CreationForm from "./CreationForm.vue";
@@ -18,8 +18,9 @@ const handleEditMode = () => {
 const employeeId = route.currentRoute.value.params.id;
 const employee = (await axios.get(`http://127.0.0.1:5000/employees/${employeeId}`)).data;
 
+provide("sharedData", employee);
 
-const addEmployee = async ({ name, role, salary, address, pincode, mobile, address_line1, address_line2, name_error, pincode_error, mobile_error }) => {
+const addEmployee = async ({ name, role, salary, pincode, mobile, address_line1, address_line2, name_error, pincode_error, mobile_error }) => {
     name_error.value = name.value.length >= 50 ? "Name must be less than 50 characters" : "";
     pincode_error.value = (pincode.value + "").length != 6 ? "Pincode must be 6 characters" : "";
     mobile_error.value = (mobile.value + "").length != 10 ? "Mobile number must be 10 characters" : "";
@@ -54,9 +55,7 @@ const addEmployee = async ({ name, role, salary, address, pincode, mobile, addre
                 </td>
             </tr>
         </table>
-        <CreationForm v-show="editMode" @send-data="addEmployee" :name="employee.name" :role="employee.role"
-            :salary="employee.salary" :pincode="employee.pincode" :mobile="employee.mobile"
-            :address_line1="employee.address.split(',')[0]" :address_line2="employee.address.split(',')[1]" />
+        <CreationForm v-show="editMode" @send-data="addEmployee" />
         <div>
             <button @click="handleEditMode" v-show="!editMode"
                 className="py-2 px-5 bg-yellow-500 rounded-lg my-10 hover:bg-yellow-800 hover:text-white shadow-xl">

@@ -1,15 +1,28 @@
 <script setup lang="ts">
 import router from "../router";
 import axios from "axios";
-import { ref, onMounted } from "vue";
+import { ref, onBeforeMount, onMounted, computed } from "vue";
 import "primeicons/primeicons.css"
 import { useEmployeeStore } from "@/stores/employeeStore";
 
+
 const store = useEmployeeStore();
 
-await store.fetchEmployees();
+onBeforeMount(async () => {
+    try {
+        console.log("Hello")
+        await store.fetchEmployees();
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
 
-const employees = ref(store.employees);
+// await store.fetchEmployees();
+
+const employees = computed(() => (store.employees));
+
+console.log(employees);
 
 const deleteMode = ref(false);
 
@@ -28,21 +41,18 @@ const handleDetails = (id: string) => {
     <div className="min-h-screen bg-gradient-to-b from-zinc-100 to-cyan-100 py-10 ">
         <div
             className="w-full flex flex-wrap lg:flex-nowrap justify-center items-center text-sm lg:text-3xl my-10 font-semibold">
-            <button @click="router.push('/')"
-                class="text-sm lg:text-lg bg-orange-500 hover:bg-orange-800 rounded-lg shadow-lg p-1 lg:p-2 mx-5 lg:mx-10 hover:text-white">
+            <v-btn variant="tonal" color="orange" @click="router.push('/')" class="mx-10 capitalize">
                 Go Back
-            </button>
+            </v-btn>
             Total number of Employees : {{ employees.length }}
-            <div className="font-normal flex flex-wrap lg:flex-nowrap">
-                <a href="/addemployee"
-                    className="bg-green-500 text-sm lg:text-lg p-1 lg:p-3 rounded-xl lg:mx-10 hover:bg-green-800 hover:cursor-pointer hover:text-white shadow-2xl">Add
-                    New
-                    Employee</a>
-                <a v-on:click="deleteMode = !deleteMode"
-                    className="bg-red-500 text-sm lg:text-lg p-1 lg:p-3 rounded-xl hover:bg-red-800 hover:cursor-pointer hover:text-white shadow-xl"><span
-                        v-show="!deleteMode">Delete
-                        Employees</span>
-                    <span v-show="deleteMode">Cancel Operation</span></a>
+            <div className="font-normal flex flex-wrap items-center lg:flex-nowrap">
+                <v-btn color="green" @click="router.push('/addemployee')" class="mx-5 capitalize">
+                    Add New Employee
+                </v-btn>
+                <v-btn color="red" @click="deleteMode = !deleteMode" class="capitalize">
+                    <span v-show="!deleteMode">Delete Employees</span>
+                    <span v-show="deleteMode">Cancel Operation</span>
+                </v-btn>
             </div>
         </div>
         <div className="w-full px-4 sm:px-20">
@@ -56,16 +66,15 @@ const handleDetails = (id: string) => {
                 <tr v-for="x in employees">
                     <td v-for="y in x">{{ y }}</td>
                     <td>
-                        <a v-on:click="handleDetails(x.id)"
-                            className="bg-purple-500 p-1 lg:p-2 rounded-lg hover:bg-purple-900 hover:text-white hover:cursor-pointer mx-2">
+                        <v-btn variant="tonal" color="purple" @click="handleDetails(x.id)" class="capitalize">
                             More Details
-                        </a>
+                        </v-btn>
                     </td>
                     <td v-show="deleteMode">
-                        <a v-show="deleteMode" v-on:click="handleDelete(x.id)"
-                            className="bg-red-500 p-1 lg:p-2 rounded-lg hover:bg-red-900 hover:text-white hover:cursor-pointer mx-2">
+                        <v-btn v-show="deleteMode" variant="flat" color="red" @click="handleDelete(x.id)"
+                            class="capitalize">
                             <i class="pi pi-trash"></i>
-                        </a>
+                        </v-btn>
                     </td>
                 </tr>
             </table>

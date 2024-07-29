@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, inject, provide } from 'vue';
 import axios from "axios";
 import router from "../router";
 import CreationForm from "@/components/CreationForm.vue";
