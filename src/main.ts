@@ -2,6 +2,8 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 import vuetify from "../src/plugins/vuetify.js";
 import 'vuetify/styles';
+import PrimeVue from 'primevue/config';
+import Aura from "@primevue/themes/Aura"
 
 import App from "./App.vue";
 import router from "./router";
@@ -12,6 +14,7 @@ const app = createApp(App);
 
 app.use(createPinia());
 app.use(vuetify);
+app.use(PrimeVue, { theme: { preset: Aura } });
 app.use(router);
 
 app.mount("#app");

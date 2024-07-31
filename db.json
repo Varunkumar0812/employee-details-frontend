@@ -1,8 +1,17 @@
 {
   "employees": [
     {
+      "id": "d26b",
+      "name": "Varunkumar R",
+      "role": "Janitor",
+      "salary": 12000,
+      "address": "Plot No : 27/1, Senthil Nagar Annex, 1st Main Road, Porur, Chennai",
+      "pincode": 600116,
+      "mobile": 8939300081
+    },
+    {
       "id": "49a8",
-      "name": "James Howlett",
+      "name": "James Logan",
       "role": "Soldier",
       "salary": 40000,
       "address": "Door No : 122, St Paul Street, Halle Berry, Utah",
@@ -97,16 +106,16 @@
       "salary": 50000,
       "address": "456 Walnut Street, Corellia",
       "pincode": 372011,
-      "mobile": 9087654321
+      "mobile": 9962390001
     },
     {
       "id": "u1v2",
-      "name": "Wade Wilson",
-      "role": "Mercenary",
-      "salary": 100000,
-      "address": "Door No : 23, Black Street, Queens, New York",
-      "pincode": 345223,
-      "mobile": 9962390001
+      "name": "Gordon Ramsay",
+      "role": "Chef",
+      "salary": 40000,
+      "address": "789 Chestnut Lane, London, UK",
+      "pincode": 560098,
+      "mobile": 8076543210
     },
     {
       "id": "w3x4",
@@ -114,7 +123,7 @@
       "role": "Archaeologist",
       "salary": 55000,
       "address": "321 Elm Street, Marshall College, Connecticut",
-      "pincode": 762699,
+      "pincode": 602699,
       "mobile": 7065432109
     },
     {
@@ -125,6 +134,26 @@
       "address": "654 Pine Avenue, Hogwarts, Scotland",
       "pincode": 602305,
       "mobile": 6054321098
+    }
+  ],
+  "users": [
+    {
+      "id": "12sd",
+      "username": "Varunkumar0812",
+      "email": "varunkumarceg@gmail.com",
+      "password": "Tvarun@0812"
+    },
+    {
+      "id": "a5d3",
+      "username": "RajaS",
+      "password": "lemongrass",
+      "email": "srajasep27@gmail.com"
+    },
+    {
+      "id": "fa77",
+      "username": "GokulramanaR",
+      "password": "Gokul@0812",
+      "email": "gokulramana1719@gmail.com"
     }
   ]
 }

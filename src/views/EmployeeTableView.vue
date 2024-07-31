@@ -1,12 +1,21 @@
 <script setup lang="ts">
 import router from "../router";
 import axios from "axios";
-import { ref, onBeforeMount, onMounted, computed } from "vue";
+import { ref, onBeforeMount, onMounted, computed, watch, watchEffect } from "vue";
 import "primeicons/primeicons.css"
 import { useEmployeeStore } from "@/stores/employeeStore";
 
 
 const store = useEmployeeStore();
+const userData = ref();
+
+/* watchEffect(() => {
+    console.log(localStorage.getItem("key") !== "validated");
+
+    if (localStorage.getItem("key") !== "validated") {
+        return location.href = "/";
+    }
+}) */
 
 onBeforeMount(async () => {
     try {
@@ -35,12 +44,18 @@ const handleDetails = (id: string) => {
     router.push(`/employee/${id}`);
 }
 
+const logOut = () => {
+    localStorage.clear();
+    router.push("/");
+}
+
 </script>
 
 <template>
     <div className="min-h-screen bg-gradient-to-b from-zinc-100 to-cyan-100 py-10 ">
         <div
             className="w-full flex flex-wrap lg:flex-nowrap justify-center items-center text-sm lg:text-3xl my-10 font-semibold">
+            <v-btn color="black" class="capitalize" @click="logOut()">Log Out</v-btn>
             <v-btn variant="tonal" color="orange" @click="router.push('/')" class="mx-10 capitalize">
                 Go Back
             </v-btn>

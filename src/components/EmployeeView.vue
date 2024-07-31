@@ -35,7 +35,7 @@ const addEmployee = async ({ name, role, salary, pincode, mobile, address_line1,
             mobile: mobile.value
         };
 
-        await store.updateEmployee(employee.data.id, data);
+        await store.updateEmployee(employeeId, data);
         router.push("/employeetable");
     }
 }

@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import router from "../router";
-import { onMounted, onBeforeMount, onUnmounted, onBeforeUnmount, onUpdated, onBeforeUpdate, reactive, provide } from "vue";
+import { onMounted, onBeforeMount, onUnmounted, onBeforeUnmount, onUpdated, onBeforeUpdate, ref } from "vue";
+
 
 const data = { name: "Varunkumar R" }
+let checked = ref(false);
 
 onBeforeMount(() => {
     console.log("Before Mounting !!");
@@ -48,8 +50,10 @@ onUnmounted(() => {
             ensures a seamless and efficient user experience.
         </div>
         <div className="w-full text-center">
-            <v-btn size="x-large" rounded="xl" color="red" @click="router.push('/employeetable')">View Employee
-                Details</v-btn>
+            <v-btn class="capitalize mr-5" size="x-large" color="red" rounded="xl" @click="router.push('/signin')">Sign
+                In</v-btn>
+            <v-btn class="capitalize" size="x-large" color="green" rounded="xl" @click="router.push('/signup')">Sign
+                Up</v-btn>
         </div>
     </div>
 </template>
