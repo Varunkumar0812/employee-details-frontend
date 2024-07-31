@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import { provide, ref } from "vue";
+import { provide, ref, type Ref } from "vue";
 import router from "../router";
 import axios from "axios";
 import CreationForm from "./CreationForm.vue";
 import { useEmployeeStore } from "@/stores/employeeStore";
+import { type EmployeeData } from "@/assets/EmployeeDataInterface";
+
 
 const route = useRouter();
 const store = useEmployeeStore();
@@ -20,7 +22,7 @@ const employee = (await axios.get(`http://127.0.0.1:5000/employees/${employeeId}
 
 provide("sharedData", employee);
 
-const addEmployee = async ({ name, role, salary, pincode, mobile, address_line1, address_line2, name_error, pincode_error, mobile_error }) => {
+const addEmployee = async ({ name, role, salary, pincode, mobile, address_line1, address_line2, name_error, pincode_error, mobile_error }: EmployeeData) => {
     name_error.value = name.value.length >= 50 ? "Name must be less than 50 characters" : "";
     pincode_error.value = (pincode.value + "").length != 6 ? "Pincode must be 6 characters" : "";
     mobile_error.value = (mobile.value + "").length != 10 ? "Mobile number must be 10 characters" : "";
@@ -35,7 +37,7 @@ const addEmployee = async ({ name, role, salary, pincode, mobile, address_line1,
             mobile: mobile.value
         };
 
-        await store.updateEmployee(employeeId, data);
+        await store.updateEmployee(String(employeeId), data);
         router.push("/employeetable");
     }
 }

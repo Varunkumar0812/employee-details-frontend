@@ -1,13 +1,13 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 import axios from 'axios';
 import router from "../router";
+import type { UserData } from "@/assets/EmployeeDataInterface";
 
 const username = ref("");
 const email = ref("");
 const password = ref("");
 const conPassword = ref("");
-const users = ref([]);
 const emailError = ref(false);
 const nameError = ref(false);
 const passError = ref(false);
@@ -25,7 +25,7 @@ const handleRegister = async () => {
 
     const users = (await axios.get("http://localhost:5000/users")).data;
 
-    users.map(el => {
+    users.map((el: UserData) => {
         nameError.value = el.username === username.value ? true : false;
         emailError.value = el.email === email.value ? true : false;
     });

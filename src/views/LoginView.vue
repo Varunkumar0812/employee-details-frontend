@@ -1,7 +1,8 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 import axios from 'axios';
 import router from "../router";
+import { type UserData } from "@/assets/EmployeeDataInterface";
 
 const username = ref("");
 const password = ref("");
@@ -12,7 +13,7 @@ const loginCheck = async () => {
     const users = (await axios.get("http://localhost:5000/users")).data;
     console.log(users);
 
-    const user = users.map(el => {
+    const user = users.map((el: UserData) => {
         if (el.username === username.value || el.email === username.value) {
             if (el.password === password.value) {
                 localStorage.setItem("key", "validated")

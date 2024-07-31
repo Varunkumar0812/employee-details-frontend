@@ -1,15 +1,6 @@
 {
   "employees": [
     {
-      "id": "d26b",
-      "name": "Varunkumar R",
-      "role": "Janitor",
-      "salary": 12000,
-      "address": "Plot No : 27/1, Senthil Nagar Annex, 1st Main Road, Porur, Chennai",
-      "pincode": 600116,
-      "mobile": 8939300081
-    },
-    {
       "id": "49a8",
       "name": "James Logan",
       "role": "Soldier",

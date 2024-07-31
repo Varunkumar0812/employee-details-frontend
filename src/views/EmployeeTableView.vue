@@ -1,21 +1,12 @@
 <script setup lang="ts">
 import router from "../router";
-import axios from "axios";
-import { ref, onBeforeMount, onMounted, computed, watch, watchEffect } from "vue";
+import { ref, onBeforeMount, computed } from "vue";
 import "primeicons/primeicons.css"
 import { useEmployeeStore } from "@/stores/employeeStore";
 
 
 const store = useEmployeeStore();
 const userData = ref();
-
-/* watchEffect(() => {
-    console.log(localStorage.getItem("key") !== "validated");
-
-    if (localStorage.getItem("key") !== "validated") {
-        return location.href = "/";
-    }
-}) */
 
 onBeforeMount(async () => {
     try {
@@ -27,7 +18,6 @@ onBeforeMount(async () => {
     }
 });
 
-// await store.fetchEmployees();
 
 const employees = computed(() => (store.employees));
 
@@ -81,12 +71,12 @@ const logOut = () => {
                 <tr v-for="x in employees">
                     <td v-for="y in x">{{ y }}</td>
                     <td>
-                        <v-btn variant="tonal" color="purple" @click="handleDetails(x.id)" class="capitalize">
+                        <v-btn variant="tonal" color="purple" @click="handleDetails(x['id'])" class="capitalize">
                             More Details
                         </v-btn>
                     </td>
                     <td v-show="deleteMode">
-                        <v-btn v-show="deleteMode" variant="flat" color="red" @click="handleDelete(x.id)"
+                        <v-btn v-show="deleteMode" variant="flat" color="red" @click="handleDelete(x['id'])"
                             class="capitalize">
                             <i class="pi pi-trash"></i>
                         </v-btn>

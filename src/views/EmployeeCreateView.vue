@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { ref, inject, provide } from 'vue';
-import axios from "axios";
 import router from "../router";
 import CreationForm from "@/components/CreationForm.vue";
 import { useEmployeeStore } from '@/stores/employeeStore';
+import { type EmployeeData } from '@/assets/EmployeeDataInterface';
 
 const store = useEmployeeStore();
 
-const addEmployee = async ({ name, role, salary, address, pincode, mobile, address_line1, address_line2, name_error, pincode_error, mobile_error }) => {
+const addEmployee = async ({ name, role, salary, address, pincode, mobile, address_line1, address_line2, name_error, pincode_error, mobile_error }: EmployeeData) => {
     name_error.value = name.value.length >= 50 ? "Name must be less than 50 characters" : "";
     pincode_error.value = (pincode.value + "").length != 6 ? "Pincode must be 6 characters" : "";
     mobile_error.value = (mobile.value + "").length != 10 ? "Mobile number must be 10 characters" : "";
