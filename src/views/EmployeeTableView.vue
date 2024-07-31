@@ -6,7 +6,6 @@ import { useEmployeeStore } from "@/stores/employeeStore";
 
 
 const store = useEmployeeStore();
-const userData = ref();
 
 onBeforeMount(async () => {
     try {
@@ -18,11 +17,8 @@ onBeforeMount(async () => {
     }
 });
 
-
+const username = JSON.parse(String(localStorage.getItem("key")))["username"];
 const employees = computed(() => (store.employees));
-
-console.log(employees);
-
 const deleteMode = ref(false);
 
 const handleDelete = async (id: string) => {
@@ -43,6 +39,7 @@ const logOut = () => {
 
 <template>
     <div className="min-h-screen bg-gradient-to-b from-zinc-100 to-cyan-100 py-10 ">
+        <div class="text-3xl font-bold text-center pb-4">Welcome back, {{ username }}</div>
         <div
             className="w-full flex flex-wrap lg:flex-nowrap justify-center items-center text-sm lg:text-3xl my-10 font-semibold">
             <v-btn color="black" class="capitalize" @click="logOut()">Log Out</v-btn>

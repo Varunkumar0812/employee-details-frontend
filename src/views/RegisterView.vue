@@ -36,7 +36,7 @@ const handleRegister = async () => {
 
         console.log(user);
 
-        localStorage.setItem("key", "validated")
+        localStorage.setItem("key", JSON.stringify({ validated: true, username: username.value }))
         return router.push("/employeetable");
     }
 }

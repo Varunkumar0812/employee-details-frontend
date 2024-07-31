@@ -23,7 +23,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const isValid = localStorage.getItem('key') === 'validated';
+  const isValid = localStorage.getItem("key");
 
   if (to.matched.some(record => record.meta.requiresAuth) && !isValid) {
     next('/signin');

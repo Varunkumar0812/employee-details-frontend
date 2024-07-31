@@ -16,7 +16,7 @@ const loginCheck = async () => {
     const user = users.map((el: UserData) => {
         if (el.username === username.value || el.email === username.value) {
             if (el.password === password.value) {
-                localStorage.setItem("key", "validated")
+                localStorage.setItem("key", JSON.stringify({ validated: true, username: el.username }))
                 return router.push("/employeetable");
             }
         }
