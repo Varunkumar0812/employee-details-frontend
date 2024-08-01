@@ -5,9 +5,12 @@ import axios from "axios";
 export const useEmployeeStore = defineStore("employee", () => {
     const employees = ref([]);
 
+    const headerObj = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } };
+
     const fetchEmployees = async () => {
+        console.log(localStorage.getItem("token"))
         try {
-            const res = await axios.get("http://127.0.0.1:5000/employees");
+            const res = await axios.get("http://127.0.0.1:3333/employees", headerObj);
             employees.value = res.data;
             console.log(employees.value);
         }
@@ -18,7 +21,7 @@ export const useEmployeeStore = defineStore("employee", () => {
 
     const addEmployee = async (data: any) => {
         try {
-            const res = await axios.post("http://127.0.0.1:5000/employees", JSON.stringify(data));
+            const res = await axios.post("http://127.0.0.1:3333/employees", data, headerObj);
         } catch (err) {
             console.log(err);
         }
@@ -26,7 +29,7 @@ export const useEmployeeStore = defineStore("employee", () => {
 
     const deleteEmployee = async (id: string) => {
         try {
-            const res = await axios.delete(`http://127.0.0.1:5000/employees/${id}`);
+            const res = await axios.delete(`http://127.0.0.1:3333/employee/${id}`, headerObj);
         }
         catch (err) {
             console.log(err);
@@ -35,7 +38,11 @@ export const useEmployeeStore = defineStore("employee", () => {
 
     const updateEmployee = async (id: string, data: any) => {
         try {
-            const res = await axios.patch(`http://127.0.0.1:5000/employees/${id}`, JSON.stringify(data));
+            console.log(JSON.stringify(data));
+
+            const res = await axios.patch(`http://127.0.0.1:3333/employee/${id}`, data, headerObj);
+            console.log(res);
+
         }
         catch (err) {
             console.log(err);

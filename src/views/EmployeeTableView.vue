@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import router from "../router";
-import { ref, onBeforeMount, computed } from "vue";
+import { ref, onBeforeMount, watchEffect, computed } from "vue";
 import "primeicons/primeicons.css"
 import { useEmployeeStore } from "@/stores/employeeStore";
 
-
 const store = useEmployeeStore();
 
-onBeforeMount(async () => {
+watchEffect(async () => {
     try {
-        console.log("Hello")
         await store.fetchEmployees();
     }
     catch (err) {
@@ -17,7 +15,6 @@ onBeforeMount(async () => {
     }
 });
 
-const username = JSON.parse(String(localStorage.getItem("key")))["username"];
 const employees = computed(() => (store.employees));
 const deleteMode = ref(false);
 
@@ -39,7 +36,6 @@ const logOut = () => {
 
 <template>
     <div className="min-h-screen bg-gradient-to-b from-zinc-100 to-cyan-100 py-10 ">
-        <div class="text-3xl font-bold text-center pb-4">Welcome back, {{ username }}</div>
         <div
             className="w-full flex flex-wrap lg:flex-nowrap justify-center items-center text-sm lg:text-3xl my-10 font-semibold">
             <v-btn color="black" class="capitalize" @click="logOut()">Log Out</v-btn>

@@ -19,15 +19,6 @@
       "mobile": 9876543210
     },
     {
-      "id": "c3d4",
-      "name": "Stephen Strange",
-      "role": "Doctor",
-      "salary": 70000,
-      "address": "177A Bleecker Street, New York",
-      "pincode": 100128,
-      "mobile": 8765432109
-    },
-    {
       "id": "e5f6",
       "name": "John Keating",
       "role": "Teacher",

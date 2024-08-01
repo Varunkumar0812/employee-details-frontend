@@ -23,22 +23,35 @@ const handleRegister = async () => {
     allTrim();
     passError.value = password.value != conPassword.value ? true : false;
 
-    const users = (await axios.get("http://localhost:5000/users")).data;
+    const token = await axios.post("http://localhost:3333/register", { email: email.value, username: username.value, password: password.value });
 
-    users.map((el: UserData) => {
-        nameError.value = el.username === username.value ? true : false;
-        emailError.value = el.email === email.value ? true : false;
-    });
+    console.log(token);
 
-
-    if (!nameError.value && !emailError.value && !passError.value) {
-        const user = await axios.post("http://localhost:5000/users", { username: username.value, password: password.value, email: email.value });
-
-        console.log(user);
-
-        localStorage.setItem("key", JSON.stringify({ validated: true, username: username.value }))
-        return router.push("/employeetable");
+    if (token.data == 1062) {
+        emailError.value = true;
+        nameError.value = true;
     }
+    else {
+        console.log(token.data.token)
+        localStorage.setItem("token", token.data.token);
+        router.push("/employeetable");
+    }
+
+    /* 
+        users.map((el: UserData) => {
+            nameError.value = el.username === username.value ? true : false;
+            emailError.value = el.email === email.value ? true : false;
+        });
+    
+    
+        if (!nameError.value && !emailError.value && !passError.value) {
+            const user = await axios.post("http://localhost:5000/users", { username: username.value, password: password.value, email: email.value });
+    
+            console.log(user);
+    
+            localStorage.setItem("key", JSON.stringify({ validated: true, username: username.value }))
+            return router.push("/employeetable");
+        } */
 }
 
 </script>

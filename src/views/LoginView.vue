@@ -10,7 +10,7 @@ const users = ref([]);
 const invalidError = ref(false);
 
 const loginCheck = async () => {
-    const users = (await axios.get("http://localhost:5000/users")).data;
+    /* const users = (await axios.get("http://127.0.0.1:3333/login")).data;
     console.log(users);
 
     const user = users.map((el: UserData) => {
@@ -22,7 +22,13 @@ const loginCheck = async () => {
         }
     });
 
-    invalidError.value = true;
+    invalidError.value = true; */
+
+    console.log({ username, password });
+
+    const token = (await axios.post("http://127.0.0.1:3333/login", { email: username.value, password: password.value })).data.token;
+    localStorage.setItem("token", token);
+    router.push("/employeetable")
 }
 
 </script>
