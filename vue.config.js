@@ -1,3 +1,1 @@
-export default defineConfig({
-  publicPath: "/employee-details-frontend"
-});
+export const publicPath = "/employee-details-frontend";
