@@ -1,3 +1,3 @@
 export default defineConfig({
-  publicPath: "/ems-frontend"
+  publicPath: "/employee-details-frontend"
 });
