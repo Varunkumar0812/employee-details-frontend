@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import router from "../router";
-import { ref, onBeforeMount, watchEffect, computed } from "vue";
+import { ref, watchEffect, watch, computed } from "vue";
 import "primeicons/primeicons.css"
 import { useEmployeeStore } from "@/stores/employeeStore";
+import CreationForm from "@/components/CreationForm.vue";
+import { type EmployeeData } from '@/assets/EmployeeDataInterface';
+
 
 const store = useEmployeeStore();
+const isDialog = ref(false);
 
 watchEffect(async () => {
     try {
@@ -14,6 +18,15 @@ watchEffect(async () => {
         console.log(err);
     }
 });
+
+watch(isDialog, async () => {
+    try {
+        await store.fetchEmployees();
+    }
+    catch (err) {
+        console.log(err);
+    }
+})
 
 const employees = computed(() => (store.employees));
 const deleteMode = ref(false);
@@ -32,6 +45,28 @@ const logOut = () => {
     router.push("/");
 }
 
+const addEmployee = async ({ name, role, salary, address, pincode, mobile, address_line1, address_line2, name_error, pincode_error, mobile_error }: EmployeeData) => {
+    name_error.value = name.value.length >= 50 ? "Name must be less than 50 characters" : "";
+    pincode_error.value = (pincode.value + "").length != 6 ? "Pincode must be 6 characters" : "";
+    mobile_error.value = (mobile.value + "").length != 10 ? "Mobile number must be 10 characters" : "";
+
+    if (name_error.value == "" && pincode_error.value == "" && mobile_error.value == "") {
+        let data = {
+            name: name.value,
+            role: role.value,
+            salary: salary.value,
+            address: address_line1.value + ", " + address_line2.value,
+            pincode: pincode.value,
+            mobile: mobile.value
+        };
+
+        await store.addEmployee([data]);
+
+        isDialog.value = false;
+        router.push("/employeetable");
+    }
+}
+
 </script>
 
 <template>
@@ -44,13 +79,21 @@ const logOut = () => {
             </v-btn>
             Total number of Employees : {{ employees.length }}
             <div className="font-normal flex flex-wrap items-center lg:flex-nowrap">
-                <v-btn color="green" @click="router.push('/addemployee')" class="mx-5 capitalize">
-                    Add New Employee
-                </v-btn>
-                <v-btn color="red" @click="deleteMode = !deleteMode" class="capitalize">
-                    <span v-show="!deleteMode">Delete Employees</span>
-                    <span v-show="deleteMode">Cancel Operation</span>
-                </v-btn>
+                <v-dialog v-model="isDialog" class="w-1/2" transition="dialog-top-transition">
+                    <template v-slot:activator="{ props: activatorProps }">
+                        <v-btn color="green" v-bind="activatorProps" class="mx-5 capitalize">
+                            Add New Employee
+                        </v-btn>
+                    </template>
+
+                    <template v-slot:default="{ isActive }">
+                        <div class="w-full p-2 bg-white rounded-md shadow-xl">
+                            <div class="font-semibold text-3xl text-center p-4 bg-white">Add New
+                                Employee</div>
+                            <CreationForm @send-data="addEmployee" />
+                        </div>
+                    </template>
+                </v-dialog>
             </div>
         </div>
         <div className="w-full px-4 sm:px-20">
@@ -59,7 +102,7 @@ const logOut = () => {
                     <td v-for="x in Object.keys(employees[0])">{{ x.toUpperCase() }}
                     </td>
                     <td>MORE DETAILS</td>
-                    <td v-show="deleteMode"></td>
+                    <td>DELETE</td>
                 </tr>
                 <tr v-for="x in employees">
                     <td v-for="y in x">{{ y }}</td>
@@ -68,9 +111,8 @@ const logOut = () => {
                             More Details
                         </v-btn>
                     </td>
-                    <td v-show="deleteMode">
-                        <v-btn v-show="deleteMode" variant="flat" color="red" @click="handleDelete(x['id'])"
-                            class="capitalize">
+                    <td>
+                        <v-btn variant="flat" color="red" @click="handleDelete(x['id'])" class="capitalize">
                             <i class="pi pi-trash"></i>
                         </v-btn>
                     </td>

@@ -26,8 +26,7 @@ const sendData = () => {
 </script>
 
 <template>
-    <form @submit.prevent="sendData()"
-        className="w-4/5 lg:w-1/3 flex flex-wrap justify-center bg-white/100 p-10 my-10 text-lg rounded-xl shadow-2xl">
+    <form @submit.prevent="sendData()" className="flex flex-wrap justify-center bg-white/100 p-10 text-lg">
         <div className="w-full flex flex-wrap sm:flex-nowrap justify-between my-2">
             <label>Name of employee</label>
             <input type="text" v-model="name" required maxlength="50"

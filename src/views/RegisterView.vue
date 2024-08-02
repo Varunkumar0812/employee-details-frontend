@@ -11,6 +11,7 @@ const conPassword = ref("");
 const emailError = ref(false);
 const nameError = ref(false);
 const passError = ref(false);
+const url = import.meta.env.VITE_APP_URL;
 
 const allTrim = () => {
     username.value = username.value.trim();
@@ -23,7 +24,7 @@ const handleRegister = async () => {
     allTrim();
     passError.value = password.value != conPassword.value ? true : false;
 
-    const token = await axios.post("http://localhost:3333/register", { email: email.value, username: username.value, password: password.value });
+    const token = await axios.post(`${url}/register`, { email: email.value, username: username.value, password: password.value });
 
     console.log(token);
 

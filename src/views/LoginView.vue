@@ -8,6 +8,7 @@ const username = ref("");
 const password = ref("");
 const users = ref([]);
 const invalidError = ref(false);
+const url = import.meta.env.VITE_APP_URL;
 
 const loginCheck = async () => {
     /* const users = (await axios.get("http://127.0.0.1:3333/login")).data;
@@ -26,9 +27,9 @@ const loginCheck = async () => {
 
     console.log({ username, password });
 
-    const token = (await axios.post("http://127.0.0.1:3333/login", { email: username.value, password: password.value })).data.token;
+    const token = (await axios.post(`${url}/login`, { email: username.value, password: password.value })).data.token;
     localStorage.setItem("token", token);
-    router.push("/employeetable")
+    router.push("/employeetable");
 }
 
 </script>

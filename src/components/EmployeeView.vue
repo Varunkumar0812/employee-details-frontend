@@ -71,7 +71,9 @@ const addEmployee = async ({ name, role, salary, pincode, mobile, address_line1,
                 </td>
             </tr>
         </table>
-        <CreationForm v-show="editMode" @send-data="addEmployee" />
+        <div class="w-1/3 flex justify-center">
+            <CreationForm v-show="editMode" @send-data="addEmployee" />
+        </div>
         <div>
             <button @click="handleEditMode" v-show="!editMode"
                 className="py-2 px-5 bg-yellow-500 rounded-lg my-10 hover:bg-yellow-800 hover:text-white shadow-xl">
