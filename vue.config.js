@@ -1,1 +1,0 @@
-export const base = "/employee-details-frontend/";
