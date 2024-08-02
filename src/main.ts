@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
-import vuetify from "../src/plugins/vuetify.js";
+import vuetify from "./plugins/vuetify";
 import 'vuetify/styles';
 import PrimeVue from 'primevue/config';
 import Aura from "@primevue/themes/Aura"

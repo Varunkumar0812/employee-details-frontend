@@ -16,22 +16,8 @@ const handleEditMode = () => {
     editMode.value = !editMode.value;
 }
 
-const options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-    timeZoneName: 'short',
-};
-
 const employeeId = route.currentRoute.value.params.id;
 const employee = (await axios.get(`http://127.0.0.1:3333/employee/${employeeId}`, { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } })).data;
-
-employee.created_at = (new Date(employee.created_at)).toLocaleString("en-US", options);
-employee.updated_at = (new Date(employee.updated_at)).toLocaleString("en-US", options);
 
 
 provide("sharedData", employee);

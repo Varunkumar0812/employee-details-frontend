@@ -27,9 +27,14 @@ const loginCheck = async () => {
 
     console.log({ username, password });
 
-    const token = (await axios.post(`${url}/login`, { email: username.value, password: password.value })).data.token;
-    localStorage.setItem("token", token);
-    router.push("/employeetable");
+    try {
+        const token = (await axios.post(`${url}/login`, { email: username.value, password: password.value })).data.token;
+        localStorage.setItem("token", token);
+        router.push("/employeetable");
+    }
+    catch (err) {
+        invalidError.value = true;
+    }
 }
 
 </script>
