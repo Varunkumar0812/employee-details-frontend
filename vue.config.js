@@ -1,1 +1,1 @@
-export const publicPath = "/employee-details-frontend";
+export const base = "/employee-details-frontend/";
