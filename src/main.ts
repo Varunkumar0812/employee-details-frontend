@@ -8,7 +8,6 @@ import Aura from "@primevue/themes/Aura"
 import App from "./App.vue";
 import router from "./router";
 import "./index.css"
-import { useEmployeeStore } from "./stores/employeeStore";
 
 const app = createApp(App);
 

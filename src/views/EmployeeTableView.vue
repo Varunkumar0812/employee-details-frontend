@@ -127,4 +127,4 @@ td {
     border: solid 1px black;
     padding: 10px;
 }
-</style>import type { useEmployeeStore } from "@/stores/employeeStore";
+</style>
