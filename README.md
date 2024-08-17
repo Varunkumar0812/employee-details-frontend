@@ -27,31 +27,32 @@ The backend repository for this project can be found here:
 
 Provides links to the sign-up and sign-in pages.
 
-![Landing Page](src/assests/ems-landing-page.png)
+![Landing Page](src/assets/ems-landing-page.png)
 
 ### Login Page
 
 Includes form validation, error handling, and API integration for the login route.
 
-![Login Page](src/assests/ems-login-page.png)
+![Login Page](src/assets/ems-login-page.png)
 
 ### Register Page
 
 Features form validation, error handling, and API integration for the registration route.
 
-![Register Page](src/assests/ems-register-page.png)
+![Register Page](src/assets/ems-register-page.png)
 
 ### Dashboard Page
 
 Displays a table of employee details with options to view more details and delete records. Includes options to create a new employee (via a modal), log out, and go back to the previous page.
 
-![Dashboard Page](src/assests/ems-dashboard-page.png)
+![Dashboard Page](src/assets/ems-dashboard-page.png)
 
 ### Employee Details Page
 
 Shows detailed information for a single employee with an option to edit the details.
 
-![Employee Details Page](src/assests/ems-employee-page.png)
+![Employee Details Page](src/assets/ems-employee-page.png)
+
 ## Features
 
 - **Modal for Creating Employee:** Allows users to add new employees through a modal form.
